@@ -9,11 +9,14 @@ class Transfer
     @status = "pending"
     @amount = amount
   end 
+#sender.valid is calling on valid method in BankAccount & can because Sender is an instance of bankAccts 
+#sender.status
 
-  def valid? #Conor to review
-    sender.valid? && receiver.valid? 
-  end
+  # def valid? #Conor to review
+  #   sender.valid? && receiver.valid? 
+  # end
 
+  
   def execute_transaction
     if self.status == "pending" && sender.balance > amount && valid?
       sender.balance -= @amount
@@ -27,7 +30,7 @@ class Transfer
   end 
 
   def reverse_transfer
-    if execute_transaction #self.status == "completed" && receiver.balance > amount && valid?
+    if execute_transaction 
       receiver.balance -= @amount
       sender.balance += @amount
       self.status = "reversed"
@@ -36,3 +39,6 @@ class Transfer
 
 
 end  
+
+
+
